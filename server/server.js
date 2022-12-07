@@ -16,7 +16,7 @@ var bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise;
 
-const url = "mongodb+srv://Mounika:Fall@2022@cluster0.dnlfnsj.mongodb.net/FinalProject?retryWrites=true&w=majority"
+const url = "mongodb+srv://Mounika:sl6G4DZFvhJHCPsM@cluster0.dnlfnsj.mongodb.net/FinalProject?retryWrites=true&w=majority"
 
 const connectionParams = {
     useNewUrlParser: true,
