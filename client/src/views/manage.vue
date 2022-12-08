@@ -1,5 +1,4 @@
 <script lang="ts">
-import * as users from "../data/users";
 import session from "../stores/session";
 import { defineComponent } from 'vue'
 
@@ -10,12 +9,24 @@ export default defineComponent({
   },
   data() {
     return {
-      generalUsers: users.list.filter((user) => user.email != session.user?.email)
+      generalUsers: []
     }
+  },
+  mounted() {
+    fetch("http://localhost:3000/api/users")
+      .then(response => response.json())
+      .then(result => {
+        this.generalUsers = result.filter((user) => user.email != session.user?.email);
+      })
   },
   methods: {
     deleteUser(deleteuser) {
-      this.generalUsers = this.generalUsers.filter((user) => user.email != deleteuser.email)
+      this.generalUsers = this.generalUsers.filter((user) => user.email != deleteuser.email);
+      fetch('http://localhost:3000/api/users/' + deleteuser._id, { method: 'DELETE' })
+        .then(() => {
+
+        });
+
     }
   }
 })
@@ -44,12 +55,12 @@ export default defineComponent({
                 <td>{{ user.email }}</td>
                 <td id="delete"><span class="icon-text">
                     <span class="icon">
-                      <i class="fas fa-trash" v-on:click="deleteUser(user)"></i>
+                      <i class="fas fa-trash" v-on:click="this.deleteUser(user)"></i>
                     </span>
                   </span></td>
               </tr>
             </tbody>
-          
+
           </table>
           <p v-else id="delete">There are no users</p>
         </div>
@@ -64,21 +75,25 @@ export default defineComponent({
   padding: 40px;
   height: 50%;
 }
-.main{
+
+.main {
   background-image: url(../assets/2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
 
 }
-.table{
+
+.table {
   padding: 150px;
- 
+
 }
-.card{
-width: 50%;
-height: 400px;
+
+.card {
+  width: 50%;
+  height: 400px;
 }
+
 #delete {
   color: red;
   cursor: pointer;
