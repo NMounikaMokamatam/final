@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import logoview from"../views/logoView.vue";
+import logoview from"../views/logoview.vue";
 import fitness from "../views/fitness.vue";
 import HomeView from "../views/HomeView.vue";
 import SignUp from "../views/SignUp.vue";
