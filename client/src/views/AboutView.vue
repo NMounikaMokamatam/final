@@ -3,10 +3,10 @@
   <template>
   <div>
     <div><br/>
-      <img src="../assets/4.jpg" class="my-image">
+      <img src="../assets/7.gif" class="my-image">
     </div><br/>
     <h5 class="title is-5 has-text-centered">
-      Fit & Fab & Fun differentiates itself, from other fitness centers by offering group workouts that focus on overall development. 
+      Fit & Fab & Fun differentiates itself, from other fitness centers !!!!!!!!!!!!!!!! 
     </h5>
     <div style="padding-bottom: 50px;"></div>
 
@@ -16,8 +16,8 @@
 
 <style scoped>
   .my-image {
-    width: 500px;
-    display: block;
+    width: 600px;
+    display:initial;
   margin-left: auto;
   margin-right: auto;
   }
