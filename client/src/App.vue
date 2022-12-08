@@ -9,7 +9,7 @@ import session, {logout} from "./stores/session";
     <div class="navbar-brand">
       <a class="navbar-item">
 
-        <h><RouterLink class="navbar-item" to="/"><img class="logo-img" src="6.jpg" ALIGN=CENTER></RouterLink></h>
+        <h><RouterLink class="navbar-item" to="/">Fab & FIt & Fun</RouterLink></h>
       </a>
       <a
         role="button"
