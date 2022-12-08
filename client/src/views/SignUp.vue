@@ -2,8 +2,8 @@
   <div class="columns is-mobile is-centered">
     <div class="column top-gap is-11-mobile is-half-tablet is-half-desktop is-half-widescreen is-half-fullhd">
       <div class="box">
-        <h1 class="title text-center">Please Register</h1>
-        <h1 class="title text-center">Signup</h1>
+        <h1 class="title text-center"> Fab & Fit & Fun </h1>
+        <h1 class="title text-center">Enter your details to Signup</h1>
         <div class="field">
           <label class="label">Name</label>
           <div class="control">

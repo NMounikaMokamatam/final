@@ -9,7 +9,7 @@ import session, {logout} from "./stores/session";
     <div class="navbar-brand">
       <a class="navbar-item">
 
-        <h><RouterLink class="navbar-item" to="/">Fab & Fit & Fun</RouterLink></h>
+        <h><RouterLink class="navbar-item" to="/"><img class="logo-img" src="6.jpg" ALIGN=CENTER></RouterLink></h>
       </a>
       <a
         role="button"
@@ -25,11 +25,11 @@ import session, {logout} from "./stores/session";
     </div>
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
-        <RouterLink class="navbar-item" to="/home">Home</RouterLink>
-        <RouterLink class="navbar-item" to="/about">About</RouterLink>
-        <RouterLink class="navbar-item" to="/fitness">Fitness</RouterLink>
-        <RouterLink class="navbar-item" to="/users" v-if="!session.isAdmin">Friends Activity</RouterLink>
-        <RouterLink class="navbar-item" to="/manage" v-if="session.isAdmin">Manage Users</RouterLink>
+        <RouterLink class="navbar-item" to="/home"><strong>Home</strong></RouterLink>
+        <RouterLink class="navbar-item" to="/about"><strong>About</strong></RouterLink>
+        <RouterLink class="navbar-item" to="/fitness"><strong>Fitness</strong></RouterLink>
+        <RouterLink class="navbar-item" to="/users" v-if="!session.isAdmin"><strong>Friends Activity</strong></RouterLink>
+        <RouterLink class="navbar-item" to="/manage" v-if="session.isAdmin"><strong>Manage Users</strong></RouterLink>
 
       </div>
       <div class="navbar-end">
@@ -53,4 +53,11 @@ import session, {logout} from "./stores/session";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.logo-img{
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto
+
+}
+</style>

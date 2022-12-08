@@ -1,6 +1,5 @@
 <script>
 import session from "../stores/session";
-
 const API_URL = "http://localhost:3000/api/";
 
 export default {
