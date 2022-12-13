@@ -1,4 +1,5 @@
-'use strict';
+<script lang="ts">
+</script>
 var mongoose = require('mongoose'),
     User = mongoose.model('Users');
 
