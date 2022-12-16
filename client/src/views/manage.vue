@@ -1,35 +1,18 @@
-<script lang="ts">
-import session from "../stores/session";
-import { defineComponent } from 'vue'
+<script setup >
+import session, { fetchUsers, deleteUserById } from "../stores/session";
+import { ref, onMounted } from 'vue'
 
-export default defineComponent({
-  props: {
-    name: String,
-    msg: { type: String, required: true }
-  },
-  data() {
-    return {
-      generalUsers: []
-    }
-  },
-  mounted() {
-    fetch("http://localhost:3000/api/users")
-      .then(response => response.json())
-      .then(result => {
-        this.generalUsers = result.filter((user) => user.email != session.user?.email);
-      })
-  },
-  methods: {
-    deleteUser(deleteuser) {
-      this.generalUsers = this.generalUsers.filter((user) => user.email != deleteuser.email);
-      fetch('http://localhost:3000/api/users/' + deleteuser._id, { method: 'DELETE' })
-        .then(() => {
+let generalUsers = ref([])
 
-        });
-
-    }
-  }
+onMounted(async () => {
+  const returnedUsers = await fetchUsers().then(users => users)
+  generalUsers.value = returnedUsers.filter(user => user.email != session.user?.email);
 })
+const deleteUser = (user) => {
+  deleteUserById(user._id);
+  generalUsers.value = generalUsers.value.filter(user => user.email != user.email);
+
+}
 
 </script>
 <template>
@@ -39,7 +22,7 @@ export default defineComponent({
     <div class="card">
       <div class="card-content">
         <div class="content">
-          <table class="table is-narrow" v-if="this.generalUsers.length > 0">
+          <table class="table is-narrow" v-if="generalUsers.length > 0">
             <thead>
               <tr>
                 <th>First Name</th>
@@ -48,14 +31,14 @@ export default defineComponent({
                 <th></th>
               </tr>
             </thead>
-            <tbody v-for="user in this.generalUsers">
+            <tbody v-for="user in generalUsers">
               <tr key={{user.id}}>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td id="delete"><span class="icon-text">
                     <span class="icon">
-                      <i class="fas fa-trash" v-on:click="this.deleteUser(user)"></i>
+                      <i class="fas fa-trash" v-on:click="deleteUser(user)"></i>
                     </span>
                   </span></td>
               </tr>

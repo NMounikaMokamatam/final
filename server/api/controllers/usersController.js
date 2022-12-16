@@ -1,5 +1,4 @@
-<script lang="ts">
-</script>
+
 var mongoose = require('mongoose'),
     User = mongoose.model('Users');
 
@@ -15,7 +14,13 @@ exports.getAllUsers = function (req, res) {
 
 // Create a new User
 exports.createUser = function (req, res) {
-    var new_user = new User(req.body);
+    var new_user = new User
+    new_user.email = req.body.email
+    new_user.password = req.body.password
+    new_user.age = req.body.age
+    new_user.firstName = req.body.firstName
+    new_user.lastName = req.body.lastName
+
     new_user.save(function (err, User) {
         if (err) {
             res.status(400).send(err);

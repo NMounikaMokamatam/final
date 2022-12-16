@@ -1,5 +1,4 @@
-<script lang="ts">
-</script>
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
