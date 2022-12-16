@@ -4,7 +4,7 @@ var commentsList = require('../controllers/commentsController')
 var excercisesList = require('../controllers/exerciseController')
 
 module.exports = function (app) {
-    app.route('/api/users')
+    app.route('/api/users/register')
         .get(usersList.getAllUsers)
         .post(usersList.createUser);
 

@@ -1,5 +1,3 @@
-<script lang="ts">
-</script>
 var mongoose = require('mongoose'),
     Comment = mongoose.model('Comments');
 

@@ -1,47 +1,19 @@
-<script>
-import session from "../stores/session";
-const API_URL = "http://localhost:3000/api/";
+<script setup>
+import { ref, onMounted } from "vue";
+import session, { fetchUserExcercises, addNewExcersise } from "../stores/session"
 
-export default {
-  name: "HomeVue",
-  data: () => ({
-    myExcercises:[],
-    excerciseName: "",
-    description: "",
+const userId = session.user._id
+const description = ref("")
+let myExcercises = ref([])
+const excerciseName = ref("")
 
-  }),
+onMounted(async () => {
+  myExcercises.value = await fetchUserExcercises(userId).then((data) => data)
+})
+const addExcersise = () => {
+  addNewExcersise(userId, excerciseName.value, description.value);
+}
 
-  mounted() {
-    fetch(API_URL+"excercises/"+session.user._id)
-      .then(response => response.json())
-      .then(result => {
-        this.myExcercises = result;
-      });
-  },
-  methods: {
-    addExcersise() {
-      const body = JSON.stringify(
-        {
-          userId: session.user._id,
-          excercise: this.excerciseName,
-          description: this.description,
-        }
-      );
-
-      fetch(API_URL +"excercises", {
-        method: "POST",
-        body: body,
-        headers: {
-          "content-type": "application/json"
-        }
-      })
-        .then(response => response.json())
-        .then(result => {
-          this.myExcercises.push(result)
-        });
-    }
-  }
-};
 </script>
 <template>
   <main class="columns is-centered is-vcentered is-mobile">

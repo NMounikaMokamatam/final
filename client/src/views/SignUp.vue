@@ -1,101 +1,67 @@
+<script setup lang="ts">
+import {ref} from 'vue'
+import { register } from '../stores/session'
+const useremail = ref('');
+const password = ref('');
+const firstName = ref('')
+const lastName = ref('')
+const age = ref('')
+
+
+function userRegister(){
+  register(firstName.value, lastName.value, age.value, useremail.value,password.value)
+}
+
+</script>
 <template>
   <div class="columns is-mobile is-centered">
+   
     <div class="column top-gap is-11-mobile is-half-tablet is-half-desktop is-half-widescreen is-half-fullhd">
+      
       <div class="box">
-        <h1 class="title text-center"> Fab & Fit & Fun </h1>
-        <h1 class="title text-center">Enter your details to Signup</h1>
-        <div class="field">
-          <label class="label">Name</label>
+        <h1 class="title text-center">SignIn to get Fit <p style="font-size:48px">
+&#128512; </p></h1>
+<div class="field">
+          <label class="label">First Name</label>
           <div class="control">
-            <input class="input" type="text" v-model="name" placeholder="Enter your name" />
+            <input v-model="firstName" class="input" name="firstName" type="text" placeholder="Enter your firstname" />
           </div>
         </div>
         <div class="field">
-          <label class="label">Email</label>
+          <label class="label"> Lastname</label>
           <div class="control">
-            <input class="input" name="email" v-model="email" type="email" placeholder="Enter your email" />
+            <input v-model="lastName" class="input" name="lastName" type="text" placeholder="Enter your lastname" />
           </div>
         </div>
         <div class="field">
           <label class="label">Age</label>
           <div class="control">
-            <input class="input" v-model="age" type="number" placeholder="Enter your age" />
+            <input v-model="age" class="input" name="age" type="text" placeholder="Enter your age" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input v-model="useremail" class="input" name="email" type="email" placeholder="Enter your email" />
           </div>
         </div>
         <div class="field">
           <label class="label">Password</label>
           <div class="control">
-            <input class="input" name="password" v-model="password" type="password" placeholder="Enter password" />
+            <input v-model="password" class="input" name="password" type="password" placeholder="Enter password" />
           </div>
         </div>
-        <div class="field">
-          <label class="label">Confirm Password</label>
-          <div class="control">
-            <input class="input" name="cpassword" v-model="password_confirmation" type="password"
-              placeholder="Retype password" />
-          </div>
-        </div>
-        <button class="button is-primary" v-on:click="submitForm()">Sign up</button>
+        <button class="button is-primary" v-on:click="userRegister()">Sign in</button>
       </div>
     </div>
   </div>
+
 </template>
-<script>
-import router from "../router/index"
-
-const API_URL = "http://localhost:3000/api/users";
-
-export default {
-  name: "signup",
-  data: () => ({
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-    age: 0,
-
-  }),
-
-  mounted() {
-
-  },
-  methods: {
-    submitForm() {
-      const body = JSON.stringify(
-        {
-          firstName: this.name.split(" ")[0],
-          lastName: this.name.split(" ")[1],
-          email: this.email,
-          username: this.name.split(" ")[0],
-          password: this.password,
-          age: this.age,
-          isAdmin: false
-        }
-      );
-
-      fetch(API_URL, {
-        method: "POST",
-        body: body,
-        headers: {
-          "content-type": "application/json"
-        }
-      })
-        .then(response => response.json())
-        .then(result => {
-          router.push('/signin');
-        });
-
-    }
-  }
-};
-</script>
-
 <style>
 .top-gap {
   margin-top: 2rem;
 }
-
-.text-center {
-  text-align: center;
+.text-center{
+    text-align: center;
 }
 </style>
